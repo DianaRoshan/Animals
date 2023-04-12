@@ -13,12 +13,12 @@ public enum Type {
     DUCK(1,0.15,200,4,"\uD83E\uDD86"),
     CATERPILLAR(0.01,0,1000,0,"\uD83D\uDC1B");
 
-    private double weight;
-    private double foodWeight;
-    private int maxCount;
-    private int maxSpeed;
-    private String img;
-    public Map<Type, Double> chanceToEat;
+    private final double weight;
+    private final double foodWeight;
+    private final int maxCount;
+    private final int maxSpeed;
+    private final String img;
+    private Map<Type, Double> chanceToEat;
 
     Type(double weight, double foodWeight, int maxCount, int maxSpeed, String img){
         this.weight = weight;
@@ -26,7 +26,6 @@ public enum Type {
         this.maxCount = maxCount;
         this.maxSpeed = maxSpeed;
         this.img = img;
-        PossibilitySetter.setMap(this);
     }
 
     public double getWeight() {
@@ -44,5 +43,10 @@ public enum Type {
     public String getImg() {
         return img;
     }
-
+    public Map<Type, Double> getChanceToEat() {
+        if (chanceToEat==null){
+            chanceToEat=PossibilitySetter.setMap(this);
+        }
+        return chanceToEat;
+    }
 }
